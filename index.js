@@ -11,6 +11,6 @@ app.use(session({
     saveUninitialized: false,
 }));
 app.use( express.json({extend : true}));
-app.use('/', productsRoute);
-app.use('/views', viewsRoute);
+app.use('/api/products', productsRoute);
+app.use('/api/views', viewsRoute);
 app.listen(PORT, () => console.log(`Server on port: ${PORT}`));
