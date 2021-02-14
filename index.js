@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+const expshbs = require('express-handlebars');
 const session = require('express-session');
-const productsRoute = require('./routes/products');
-const viewsRoute = require('./routes/views');
+const apiRoute = require('./routes/api');
 const methodOverride = require('method-override');
 const PORT = process.env.PORT || 8080;
+
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
@@ -12,9 +15,19 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
+
+app.engine('.hbs', expshbs({
+    defaultLayout: 'index',
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialsDir: path.join(app.get('views'), 'partials'),
+    extname: '.hbs',
+}));
+
+app.set('view engine', '.hbs');
+
 app.use(methodOverride());
 app.use( express.json({extend : true}));
 app.use(express.static('public'))
-app.use('/api/products', productsRoute);
-app.use('/api/views', viewsRoute);
+app.use('/api', apiRoute);
+
 app.listen(PORT, () => console.log(`Server on port: ${PORT}`));

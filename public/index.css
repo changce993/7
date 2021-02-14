@@ -1,18 +1,44 @@
+:root{
+    --color-info: #448aff;
+    --color-info-hover: #0077cc;
+}
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+body{
+    background-color: #f9f9ff;
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container{
+    max-width: 1440px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+a{
+    color:var(--color-info);
+    text-decoration: none;
+    transition:.3s;
+}
+
+a:hover{
+    color: var(--color-info-hover);
+}
+
 .center{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-body{
-    background-color: #f9f9ff;
-    height: 100vh;
 }
 
 form{
