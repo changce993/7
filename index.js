@@ -16,14 +16,15 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-app.engine('.hbs', expshbs({
-    defaultLayout: 'index',
-    layoutsDir: path.join(app.get('views'), 'layouts'),
-    partialsDir: path.join(app.get('views'), 'partials'),
-    extname: '.hbs',
-}));
+// app.engine('.hbs', expshbs({
+//     defaultLayout: 'index',
+//     layoutsDir: path.join(app.get('views'), 'layouts'),
+//     partialsDir: path.join(app.get('views'), 'partials'),
+//     extname: '.hbs',
+// }));
 
-app.set('view engine', '.hbs');
+// app.set('view engine', '.hbs');
+app.set('view engine', 'pug');
 
 app.use(methodOverride());
 app.use( express.json({extend : true}));
