@@ -16,19 +16,18 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-// app.engine('.hbs', expshbs({
-//     defaultLayout: 'index',
-//     layoutsDir: path.join(app.get('views'), 'layouts'),
-//     partialsDir: path.join(app.get('views'), 'partials'),
-//     extname: '.hbs',
-// }));
+app.engine('.hbs', expshbs({
+    defaultLayout: 'index',
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialsDir: path.join(app.get('views'), 'partials'),
+    extname: '.hbs',
+}));
 
-// app.set('view engine', '.hbs');
-app.set('view engine', 'pug');
+app.set('view engine', '.hbs');
 
 app.use(methodOverride());
 app.use( express.json({extend : true}));
 app.use(express.static('public'))
 app.use('/api', apiRoute);
 
-app.listen(PORT, () => console.log(`Server on port: ${PORT}`));
+app.listen(PORT, () => console.log('Server on port:', PORT)).on('error', err => console.log('Error de conexion:',err));
