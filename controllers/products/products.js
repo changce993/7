@@ -1,6 +1,5 @@
 const { getProduct, readProducts, writeProducts } = require('./utils');
 const products = readProducts();
-console.log(products)
 
 module.exports = {
     getProducts: (req,res) => res.render('products', {products}),
@@ -11,11 +10,12 @@ module.exports = {
             id:products.length + 1,
             name,
             price,
+            baseurl:'http://localhost:8080/',
             thumbnail: `images/products/${req.file.filename}`,
             ...req.body,
         }
-        const newProducts = products.push(product);
-        writeProducts(newProducts)
+        products.push(product);
+        writeProducts(products);
         res.render('products', {products});
     },
     deleteProduct: (req,res) => {
