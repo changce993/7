@@ -4,28 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Document</title>
 </head>
 <body class='center'>
-    <form action="/api/products" enctype="multipart/form-data" method="POST" class='center'>
+    <form action="/api/products" enctype="multipart/form-data" method="POST" class='center' id='form'>
         <h1>Carga un producto nuevo</h1>
         <div class='input-group center'>
             <label>Name</label>
-            <input name="name" type="text" placeholder="name" autofocus>
+            <input id='input-name' name="name" type="text" placeholder="name" autofocus>
         </div>
 
         <div class='input-group center'>
             <label>Price</label>
-            <input name="price" type="text" placeholder="price">
+            <input id='input-price' name="price" type="text" placeholder="price">
         </div>
 
         <div class='input-group center'>
             <label>Thumbnail</label>
-            <input name="thumbnail" type="file">
+            <input id='input-thumbnail' name="thumbnail" type="file">
         </div>
 
         <button type="submit">crear</button>
     </form>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="/js/socket.js"></script>
 </body>
 </html>
