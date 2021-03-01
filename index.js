@@ -6,31 +6,20 @@ const session = require('express-session');
 const apiRoute = require('./routes/api');
 const methodOverride = require('method-override');
 const PORT = process.env.PORT || 8080;
-const io = require('socket.io')(http);
-const { readProducts } = require('./controllers/products/utils');
+const socketIO = require('./socket');
 
-// io.on('connection', socket => socket.on('product', product => socket.emit('product', product)));
-io.on('connection', socket => {
-    socket.on('product', product => {
-        socket.emit('newProd', product)
-    })
-});
-
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.urlencoded({ extended: false }));
-app.use(session({
-    secret: 'Oeee!!',
-    resave: false,
-    saveUninitialized: false,
-}));
+socketIO(http);
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
+app.use(session({ secret: 'Oee!', resave: false, saveUninitialized: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride());
 app.use( express.json({extend : true}));
 app.use(express.static('public'))
 app.use('/api', apiRoute);
+app.use('/chat', (req,res) => res.render('chat'));
 app.use('/', (req,res) => res.render('index'));
 app.use((req,res) => res.status(404).render('404'));
 
